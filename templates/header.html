@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Typing Trainer</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'header.css' %}">
+</head>
+
+<body>
+    <div id="header">
+        <div class="containerlogo">
+            <a class="redirection" href="/">
+                <img class="logo" src="{% static 'images/bvat_logo.png' %}">
+                <span class="logoText">&nbsp;Typing Trainer</span>
+            </a>
+        </div>
+        <div class="containernavigation">
+            <a class="border" id="navigationPlay" href="/">
+                <img class="icon" src="{% static 'images/bvat_play.png' %}">
+                <span class="navigationText">&nbsp;&nbsp;Play</span>
+            </a>
+            <a class="border" id="navigationStatistiek" href="/statistiek">
+                <img class="icon" src="{% static 'images/bvat_statistieken.png' %}">
+                <span class="navigationText">&nbsp;&nbsp;Statistieken</span>
+            </a>
+            <a class="border" id="navigationHelp" href="/help">
+                <img class="icon" src="{% static 'images/bvat_help.png' %}">
+                <span class="navigationText">&nbsp;&nbsp;Help</span>
+            </a>
+        </div>
+    </div>
+    <script>
+        document.getElementById("navigationPlay").style.borderBottom = "4px solid #000000";
+    </script>
+</body>
+
+</html>
