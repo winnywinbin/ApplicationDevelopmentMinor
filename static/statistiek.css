@@ -1,0 +1,67 @@
+.bodypage {
+  overflow: scroll;
+}
+
+.dropdowncontainer {
+    display: flex;
+}
+
+.container {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.tg  {
+  border-collapse:collapse;
+  border-color:#9ABAD9;
+  border-spacing:0;
+}
+
+.tg td{
+  background-color:#EBF5FF;
+  border-color:#9ABAD9;
+  border-style:solid;
+  border-width:1px;
+  color:#444;
+  font-family:Arial, sans-serif;
+  font-size:14px;overflow:hidden;
+  padding:10px 5px;
+  word-break:normal;
+  width: 70px;
+}
+
+.tg th{
+  background-color:#409cff;
+  border-color:#9ABAD9;
+  border-style:solid;
+  border-width:1px;color:#fff;
+  font-family:Arial, sans-serif;
+  font-size:14px;
+  font-weight:normal;
+  overflow:hidden;
+  padding:10px 5px;
+  word-break:normal;
+  width: 70px;
+}
+
+.tg .tg-hmp3{
+  background-color:#D2E4FC;
+  text-align:left;
+  vertical-align:top
+}
+
+.tg .tg-0lax{
+  text-align:left;vertical-align:top
+}
+
+
+
+

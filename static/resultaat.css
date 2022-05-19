@@ -1,0 +1,80 @@
+.bodypage{
+  overflow: scroll;
+}
+
+.center {
+  margin-top: 10%;
+}
+
+.wrapper {
+  text-align: center;
+}
+.inline{
+  display: inline-block;
+
+}
+
+.txt_left {
+  text-align: left;
+}
+.sidebyside_left {
+  float: left;
+  padding: 10px;
+}
+
+img {
+  width: 600px;
+  height: 400px;
+}
+
+.tg  {
+  border-collapse:collapse;
+  border-color: black;
+  border-spacing:0;
+  width: 300px;
+}
+
+.tg td{
+  background-color: white;
+
+  border-style:solid;
+  border-width:1px;
+  color: #000000;
+  font-family:Arial, sans-serif;
+  font-size:14px;overflow:hidden;
+  padding:10px 5px;
+  word-break:normal;
+}
+
+.tg th{
+  background-color: #8faadc;
+  border-style:solid;
+  border-width:1px;color:black;
+  font-family:Arial, sans-serif;
+  font-size:14px;
+  font-weight:bold;
+  overflow:hidden;
+  padding:10px 5px;
+  word-break:normal;
+}
+
+.tg .tg-hmp3{
+  background-color: #ffffff;
+  text-align:left;
+  vertical-align:top
+}
+
+.tg .tg-0lax{
+  text-align:left;
+  vertical-align:top
+}
+
+a {
+  font-family: Arial;
+}
+
+h1 {
+  font-family: Arial;
+}
+
+

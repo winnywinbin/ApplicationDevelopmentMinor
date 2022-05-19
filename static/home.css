@@ -1,0 +1,42 @@
+.home_container {
+    width: 85%;
+	height: 43%;
+    position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+    display: flex;
+    grid-gap: 70px;
+}
+
+.buttons {
+    width: 100px;
+    height: 130px;
+    flex: 1;
+    background-color: #8faadc;
+    width: 30%;
+    border: none;
+    box-shadow: 0 1px 6px -1px black;
+    top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.image {
+    height: 60px;
+    width: 60px;
+    margin-left: 35px;
+    float: left;
+}
+
+.text {
+    font-size: 32px;
+    font-family: Arial;
+    text-align: center;
+    line-height: 65px;
+    margin-right: 30px;
+}
