@@ -1,0 +1,87 @@
+html {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0px;
+    background-color: #f2f2f2;
+}
+
+.redirection {
+    margin-left: 25px;
+    font-size: 18px;
+    text-decoration: none;
+    color: black;
+    font-family: Arial;
+}
+
+.border {
+    width: 150px;
+    display: inline-block;
+    text-align: center;
+    font-size: 18px;
+    text-decoration: none;
+    color: black;
+    font-family: Arial;
+    padding: 16px;
+}
+
+#header {
+    position: fixed !important;
+    background-color: #8faadc;
+    width: 100%;
+    height: 56px;
+    margin-top: 15px;
+    display: flex;
+}
+
+/*Container for logo and text left*/
+.containerlogo {
+    position: absolute;
+    margin-left: 12px;
+    bottom: -28%;
+}
+
+.containerlogo .logo {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: white;
+    border: 7px solid #8faadc;
+    vertical-align: middle;
+    padding: 5px;
+}
+
+/*Container for buttons and icons right*/
+.containernavigation {
+    position: absolute;
+    right: -13%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*Right side icons styling*/
+.containernavigation .icon {
+    height: 28px;
+    width: 28px;
+    vertical-align: middle
+}
+
+.bodypage {
+    background-color: white;
+    width: 70%;
+    z-index: -1;
+	position: absolute;
+	top: 70px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+
+
+
+
+
