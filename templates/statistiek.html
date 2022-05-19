@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Typing Trainer</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'statistiek.css' %}">
+    <script type='text/javascript' src="{% static 'statistiek.js' %}"></script>
+</head>
+
+<body>
+    {% include "header.html" %}
+    <div class="bodypage"><br>
+        <div class="centered">
+            <div class="dropdowncontainer">
+                <div class="container taal">
+                    <label for="taal">Taal</label><br>
+                    <select name="taal" id="taal" onclick="change_data()">
+                        <option value="nederlands">Nederlands</option>
+                        <option value="engels">Engels</option>
+                    </select>
+                </div>
+                <div class="container moeilijkheid">
+                    <label for="moeilijkheid">Moeilijkheid</label><br>
+                    <select name="moeilijkheid" id="moeilijkheid" onclick="change_data()">
+                        <option value="makkelijk">Makkelijk</option>
+                        <option value="gemiddeld">Gemiddeld</option>
+                        <option value="moeilijk">Moeilijk</option>
+                    </select>
+                </div>
+                <div class="container type">
+                    <label for="type">Type</label><br>
+                    <select name="type" id="type" onclick="change_data()">
+                        <option value="accuracy">Accuracy</option>
+                        <option value="wpm">WPM</option>
+                    </select>
+                </div>
+                <div class="container rank">
+                    <label for="aantal_ranks">Aantal ranks</label>
+                    <select name="aantal_ranks" id="aantal_ranks" onclick="change_data()">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                    </select>
+                </div>
+            </div>
+            <p id="text"></p>
+            <div class="histocontainer">
+                <img class="logo" id="histogram" src="{% static 'images/NL_makkelijk_acc.png' %}">
+            </div><br>
+            <div class="tabelcontainer">
+                <table class="tg" id="NL_makkelijk_acc">
+                <thead>
+                  <tr>
+                    <th class="tg-0lax">#</th>
+                    <th class="tg-0lax">Naam</th>
+                    <th class="tg-0lax">WPM</th>
+                    <th class="tg-0lax">Fouten</th>
+                    <th class="tg-0lax">Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for item in NL_makkelijk_acc %}
+                  <tr class="NL_makkelijk">
+                    <td class="tg-hmp3">{{forloop.counter}}</td>
+                    <td class="tg-hmp3">{{item.naam}}</td>
+                    <td class="tg-hmp3">{{item.wpm}}</td>
+                    <td class="tg-hmp3">{{item.fouten}}</td>
+                    <td class="tg-hmp3">{{item.score}}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+                <script type="text/javascript">
+                     let rows = document.getElementById('NL_makkelijk_acc').rows;
+                     for (let i = 11; i<rows.length; i++) {
+                         rows[i].style.display = 'none';
+                     }
+                </script>
+                <table class="tg" id="NL_gemiddeld_acc" style="display: none">
+                <thead>
+                  <tr>
+                    <th class="tg-0lax">#</th>
+                    <th class="tg-0lax">Naam</th>
+                    <th class="tg-0lax">WPM</th>
+                    <th class="tg-0lax">Fouten</th>
+                    <th class="tg-0lax">Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for item in NL_gemiddeld_acc %}
+                  <tr>
+                    <td class="tg-hmp3">{{forloop.counter}}</td>
+                    <td class="tg-hmp3">{{item.naam}}</td>
+                    <td class="tg-hmp3">{{item.wpm}}</td>
+                    <td class="tg-hmp3">{{item.fouten}}</td>
+                    <td class="tg-hmp3">{{item.score}}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+                <table class="tg" id="NL_moeilijk_acc" style="display: none">
+                <thead>
+                  <tr>
+                    <th class="tg-0lax">#</th>
+                    <th class="tg-0lax">Naam</th>
+                    <th class="tg-0lax">WPM</th>
+                    <th class="tg-0lax">Fouten</th>
+                    <th class="tg-0lax">Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for item in NL_moeilijk_acc %}
+                  <tr>
+                    <td class="tg-hmp3">{{forloop.counter}}</td>
+                    <td class="tg-hmp3">{{item.naam}}</td>
+                    <td class="tg-hmp3">{{item.wpm}}</td>
+                    <td class="tg-hmp3">{{item.fouten}}</td>
+                    <td class="tg-hmp3">{{item.score}}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+                <table class="tg" id="EN_makkelijk_acc" style="display: none">
+                <thead>
+                  <tr>
+                    <th class="tg-0lax">#</th>
+                    <th class="tg-0lax">Naam</th>
+                    <th class="tg-0lax">WPM</th>
+                    <th class="tg-0lax">Fouten</th>
+                    <th class="tg-0lax">Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for item in EN_makkelijk_acc %}
+                  <tr>
+                    <td class="tg-hmp3">{{forloop.counter}}</td>
+                    <td class="tg-hmp3">{{item.naam}}</td>
+                    <td class="tg-hmp3">{{item.wpm}}</td>
+                    <td class="tg-hmp3">{{item.fouten}}</td>
+                    <td class="tg-hmp3">{{item.score}}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+                <table class="tg" id="EN_gemiddeld_acc" style="display: none">
+                <thead>
+                  <tr>
+                    <th class="tg-0lax">#</th>
+                    <th class="tg-0lax">Naam</th>
+                    <th class="tg-0lax">WPM</th>
+                    <th class="tg-0lax">Fouten</th>
+                    <th class="tg-0lax">Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for item in EN_gemiddeld_acc %}
+                  <tr>
+                    <td class="tg-hmp3">{{forloop.counter}}</td>
+                    <td class="tg-hmp3">{{item.naam}}</td>
+                    <td class="tg-hmp3">{{item.wpm}}</td>
+                    <td class="tg-hmp3">{{item.fouten}}</td>
+                    <td class="tg-hmp3">{{item.score}}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+                <table class="tg" id="EN_moeilijk_acc" style="display: none">
+                <thead>
+                  <tr>
+                    <th class="tg-0lax">#</th>
+                    <th class="tg-0lax">Naam</th>
+                    <th class="tg-0lax">WPM</th>
+                    <th class="tg-0lax">Fouten</th>
+                    <th class="tg-0lax">Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for item in EN_moeilijk_acc %}
+                  <tr>
+                    <td class="tg-hmp3">{{forloop.counter}}</td>
+                    <td class="tg-hmp3">{{item.naam}}</td>
+                    <td class="tg-hmp3">{{item.wpm}}</td>
+                    <td class="tg-hmp3">{{item.fouten}}</td>
+                    <td class="tg-hmp3">{{item.score}}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+                <table class="tg" id="NL_makkelijk_wpm" style="display: none">
+                <thead>
+                  <tr>
+                    <th class="tg-0lax">#</th>
+                    <th class="tg-0lax">Naam</th>
+                    <th class="tg-0lax">WPM</th>
+                    <th class="tg-0lax">Fouten</th>
+                    <th class="tg-0lax">Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for item in NL_makkelijk_wpm %}
+                  <tr class="NL_makkelijk">
+                    <td class="tg-hmp3">{{forloop.counter}}</td>
+                    <td class="tg-hmp3">{{item.naam}}</td>
+                    <td class="tg-hmp3">{{item.wpm}}</td>
+                    <td class="tg-hmp3">{{item.fouten}}</td>
+                    <td class="tg-hmp3">{{item.score}}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+                <table class="tg" id="NL_gemiddeld_wpm" style="display: none">
+                <thead>
+                  <tr>
+                    <th class="tg-0lax">#</th>
+                    <th class="tg-0lax">Naam</th>
+                    <th class="tg-0lax">WPM</th>
+                    <th class="tg-0lax">Fouten</th>
+                    <th class="tg-0lax">Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for item in NL_gemiddeld_wpm %}
+                  <tr>
+                    <td class="tg-hmp3">{{forloop.counter}}</td>
+                    <td class="tg-hmp3">{{item.naam}}</td>
+                    <td class="tg-hmp3">{{item.wpm}}</td>
+                    <td class="tg-hmp3">{{item.fouten}}</td>
+                    <td class="tg-hmp3">{{item.score}}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+                <table class="tg" id="NL_moeilijk_wpm" style="display: none">
+                <thead>
+                  <tr>
+                    <th class="tg-0lax">#</th>
+                    <th class="tg-0lax">Naam</th>
+                    <th class="tg-0lax">WPM</th>
+                    <th class="tg-0lax">Fouten</th>
+                    <th class="tg-0lax">Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for item in NL_moeilijk_wpm %}
+                  <tr>
+                    <td class="tg-hmp3">{{forloop.counter}}</td>
+                    <td class="tg-hmp3">{{item.naam}}</td>
+                    <td class="tg-hmp3">{{item.wpm}}</td>
+                    <td class="tg-hmp3">{{item.fouten}}</td>
+                    <td class="tg-hmp3">{{item.score}}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+                <table class="tg" id="EN_makkelijk_wpm" style="display: none">
+                <thead>
+                  <tr>
+                    <th class="tg-0lax">#</th>
+                    <th class="tg-0lax">Naam</th>
+                    <th class="tg-0lax">WPM</th>
+                    <th class="tg-0lax">Fouten</th>
+                    <th class="tg-0lax">Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for item in EN_makkelijk_wpm %}
+                  <tr>
+                    <td class="tg-hmp3">{{forloop.counter}}</td>
+                    <td class="tg-hmp3">{{item.naam}}</td>
+                    <td class="tg-hmp3">{{item.wpm}}</td>
+                    <td class="tg-hmp3">{{item.fouten}}</td>
+                    <td class="tg-hmp3">{{item.score}}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+                <table class="tg" id="EN_gemiddeld_wpm" style="display: none">
+                <thead>
+                  <tr>
+                    <th class="tg-0lax">#</th>
+                    <th class="tg-0lax">Naam</th>
+                    <th class="tg-0lax">WPM</th>
+                    <th class="tg-0lax">Fouten</th>
+                    <th class="tg-0lax">Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for item in EN_gemiddeld_wpm %}
+                  <tr>
+                    <td class="tg-hmp3">{{forloop.counter}}</td>
+                    <td class="tg-hmp3">{{item.naam}}</td>
+                    <td class="tg-hmp3">{{item.wpm}}</td>
+                    <td class="tg-hmp3">{{item.fouten}}</td>
+                    <td class="tg-hmp3">{{item.score}}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+                <table class="tg" id="EN_moeilijk_wpm" style="display: none">
+                <thead>
+                  <tr>
+                    <th class="tg-0lax">#</th>
+                    <th class="tg-0lax">Naam</th>
+                    <th class="tg-0lax">WPM</th>
+                    <th class="tg-0lax">Fouten</th>
+                    <th class="tg-0lax">Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for item in EN_moeilijk_wpm %}
+                  <tr>
+                    <td class="tg-hmp3">{{forloop.counter}}</td>
+                    <td class="tg-hmp3">{{item.naam}}</td>
+                    <td class="tg-hmp3">{{item.wpm}}</td>
+                    <td class="tg-hmp3">{{item.fouten}}</td>
+                    <td class="tg-hmp3">{{item.score}}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("navigationPlay").style.borderBottom = "";
+        document.getElementById("navigationStatistiek").style.borderBottom = "4px solid #000000";
+    </script>
+</body>
+
+</html>

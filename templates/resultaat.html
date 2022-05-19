@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Typing Trainer</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'resultaat.css' %}">
+</head>
+
+<body>
+    {% include "header.html" %}
+    <div class="bodypage">
+        <div class="center">
+            <div class="wrapper">
+                <div class="inline txt_left">
+                    <h1>Jouw score</h1>
+                </div>
+            </div>
+
+            <div class="wrapper">
+                <div class="inline">
+                    <div class="sidebyside_left txt_left">
+                        <a>Aantal Woorden</a><br>
+                        <a>WPM</a><br>
+                        <a>Fouten</a><br>
+                        <a>Score</a>
+                    </div>
+                    <div class="sidebyside_left">
+                        <a>{{score.aantal}}</a><br>
+                        <a>{{score.wpm}}</a><br>
+                        <a>{{score.fouten}}</a><br>
+                        <a>{{score.score}}</a>
+                    </div>
+                </div>
+            </div>
+
+            {% if speelmodus == 'database' %}
+                <div class="wrapper">
+                    <div class="inline">
+                        <div class="sidebyside_left txt_left">
+                            <a><span style="font-weight:bold;">Highscores:</span> {{taal}}, {{moeilijkheidsgraad}}</a><br>
+                            <table class="tg">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Naam</th>
+                                        <th scope="col">WPM</th>
+                                        <th scope="col">Fouten</th>
+                                        <th scope="col">Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for atr in top_5 %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{atr.naam}}</td>
+                                        <td>{{atr.wpm}}</td>
+                                        <td>{{atr.fouten}}</td>
+                                        <td>{{atr.score}}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <br><br>
+                            <table class="tg">
+                                <tbody>
+                                {% for atr in player_score %}
+                                    <tr>
+                                        <td>{{forloop.counter|add:index}}</td>
+                                        <td>{{atr.naam}}</td>
+                                        <td>{{atr.wpm}}</td>
+                                        <td>{{atr.fouten}}</td>
+                                        <td>{{atr.score}}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="inline txt_left">
+                            {% for img in image %}
+                                <img class="sidebyside_left" src="{% static 'images/'|add:img' %}">
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

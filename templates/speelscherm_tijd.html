@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Typing Trainer</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'speelscherm.css' %}">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type='text/javascript' src="{% static 'speelscherm.js' %}"></script>
+</head>
+
+<body>
+    {% include "header.html" %}
+    <div class="bodypage">
+       <div class="playscreen">
+            <div class="bar">
+                <div class="typed-words">
+                    <span id="typed-words">0</span> Woorden
+                </div>
+                <div class="time">
+                    <img class="klok" src="{% static 'images/bvat_klok.png' %}">
+                    <span class="timer" id="timer"></span>
+                </div>
+            </div>
+            <div class="text">
+                <div class="input-text" id="inputtext">
+                </div>
+            </div>
+           <input type="text" placeholder="Typ de bovenstaande tekst" class="input-field" id="inputfield">
+       </div>
+    </div>
+
+    <script>
+        const words = "{{ woorden }}"
+        wordsToType(words);
+        onEnter('time');
+        setTime("{{ seconden }}");
+        startTime('time', "{{ seconden }}");
+    </script>
+</body>
+
+</html>

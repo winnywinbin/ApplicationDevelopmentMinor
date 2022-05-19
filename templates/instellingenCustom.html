@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Typing Trainer</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'instellingen.css' %}">
+    <script type='text/javascript' src="{% static 'instellingen.js' %}"></script>
+</head>
+
+<body>
+    {% include "header.html" %}
+    <div class="bodypage">
+        <div class="settings-container">
+            <div class="playText">
+                Play met eigen woorden
+            </div>
+                 <form method="post" action="" enctype="multipart/form-data">
+                     {% csrf_token %}
+                     <label>Naam</label>
+                     <div class="error">{{error_naam}}</div>
+                     {{customform.naam}}
+                     <label>Spelmodus</label>
+                     <div class="error">{{error_spelmodus}}</div>
+                     {{customform.spelmodus}}
+                     <label id='tijdlabel' style="display: none;">Tijd</label>
+                     <div id="tijderror" class="errorHidden">{{error_tijd}}</div>
+                     {{customform.tijd}}
+                     <label>Woorden</label>
+                     <div class="error">{{error_woorden}}</div>
+                     {{customform.woorden}}<br><br>
+                     <label>Upload file met woorden</label>
+                     <div class="error">{{error_file}}</div><br>
+                     {{customform.file}}<br><br>
+                    <input type="submit" name="custom" value="Start" class="button">
+            </form>
+        </div>
+    </div>
+    <script>
+        customHideShow("{{spelmodus}}")
+    </script>
+</body>
+
+</html>

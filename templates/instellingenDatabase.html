@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Typing Trainer</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'instellingen.css' %}">
+    <script type='text/javascript' src="{% static 'instellingen.js' %}"></script>
+</head>
+
+<body>
+    {% include "header.html" %}
+    <div class="bodypage">
+        <div class="settings-container">
+            <div class="playText">
+                Play
+            </div>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <label>Naam</label>
+                <div class="error">{{error_naam}}</div>
+                {{formulier.naam}}
+                <label>Spelmodus</label>
+                <div class="error">{{error_spelmodus}}</div>
+                {{formulier.spelmodus}}
+                <label id='tijdlabel' style="display: none;">Tijd</label>
+                <div id="tijderror" class="errorHidden">{{error_tijd}}</div>
+                {{formulier.tijd}}
+                <label id='woordenlabel' style="display: none;">Woorden</label>
+                <div id="woordenerror" class="errorHidden">{{error_woorden}}</div>
+                {{formulier.woorden}}
+                <label>Taal</label>
+                <div class="error">{{error_taal}}</div>
+                {{formulier.taal}}
+                <label>Moeilijkheid</label>
+                <div class="error">{{error_moeilijkheid}}</div>
+                {{formulier.moeilijkheid}}
+                <input type="submit" name="database" value="Start" class="button">
+            </form>
+
+        </div>
+    </div>
+    <script>
+        hideShow("{{spelmodus}}")
+    </script>
+</body>
+
+</html>
+
+

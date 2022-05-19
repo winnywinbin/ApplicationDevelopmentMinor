@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'help.css' %}">
+</head>
+
+<body>
+    {% include "header.html" %}
+    <div class="bodypage">
+        <div class="centered">
+            <p>
+                Welkom op de help pagina van Typing Trainer.
+                <br><br>
+                Het doel van Typing Trainer is om sneller te leren typen door middel van kleine stukken tekst.
+                <br><br>
+                Op de <a id="HL" href="/">Play</a> pagina kan een spel gestart worden.<br>
+                Vul een naam in, selecteert een taal, tijd, en moeilijkheidsgraad en druk op Start.
+                Typ nu het gegeven stuk tekst zo snel mogelijk.<br>
+                Probeer natuurlijk binnen de tijd te blijven!
+                <br><br>
+                Jouw Score wordt opgeslagen in de database.<br>
+                De database bevat het aantal woorden wat getypt is, woorden per minuut (WPM), fouten, en een uiteindelijke Score.
+                Deze Score wordt berekend na aanleiding van het aantal woorden, woorden per minuut en de fouten.
+                <br><br>
+                Alle scores zijn terug te vinden op de <a id="HL" href="/statistiek">Statistieken</a> pagina.
+
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("navigationPlay").style.borderBottom = "";
+        document.getElementById("navigationHelp").style.borderBottom = "4px solid #000000";
+    </script>
+</body>
+
+</html>

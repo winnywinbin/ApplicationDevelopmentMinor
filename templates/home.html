@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Typing Trainer</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+</head>
+
+<body>
+    {% include "header.html" %}
+    <div class="bodypage">
+        <div class="home_container">
+            <button type="button" class="buttons" onclick="window.location.href='/instellingen-database/'">
+                <img class="image" src="{% static 'images/bvat_play.png' %}">
+                <span class="text">Play</span>
+            </button>
+            <button type="button" class="buttons" onclick="window.location.href='/instellingen-custom/'">
+                <img class="image" src="{% static 'images/bvat_custom.png' %}">
+                <span class="text">Eigen woorden</span>
+            </button>
+        </div>
+    </div>
+</body>
+
+
+</html>
