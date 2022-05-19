@@ -1,0 +1,196 @@
+var spelmodusOpties = {
+    "Tijd": [{"Optie": "1 minuut"}, {"Optie": "2 minuten"}, {"Optie": "5 minuten"}],
+    "Woorden": [{"Optie": "50 woorden"}, {"Optie": "100 woorden"}, {"Optie": "150 woorden"}],
+};
+
+function hideShow(value){
+//    var spelmodusStr = document.getElementByClassName("spelmodus").value;
+    if (value == 'tijd') {
+        document.getElementById('tijdClass').style.display = "block";
+        document.getElementById('woordenClass').style.display = "none";
+        }
+    if (value == "woorden") {
+        document.getElementById('woordenClass').style.display = "block";
+        document.getElementById('tijdClass').style.display = "none";
+    }
+    if (value == "default") {
+        document.getElementById('woordenClass').style.display = "none";
+        document.getElementById('tijdClass').style.display = "none";
+    }
+}
+
+function customHideShow(value){
+//    var spelmodusStr = document.getElementByClassName("spelmodus").value;
+    if (value == 'tijd') {
+        document.getElementById('tijdClass').style.display = "block";
+        }
+    if (value == "woorden") {
+        document.getElementById('tijdClass').style.display = "none";
+    }
+    if (value == "default") {
+        document.getElementById('tijdClass').style.display = "none";
+    }
+}
+
+
+function PrepopulateSpelmodus() {
+    var spelmodusSelect = document.getElementById('spelmodus');
+    var i = 1;
+    for (var spelmodus in spelmodusOpties) {
+        spelmodusSelect.options[i++] = new Option(spelmodus)
+    }
+}
+
+function changeSpelmodus(productNameID) {
+    if(!productNameID) {
+        document.getElementById('optieDiv').style.display = "none"
+        return;
+    } else {
+        document.getElementById('optieDiv').style.display = ""
+    }
+    var optieSelect = document.getElementById('opties');
+    optieSelect.innerHTML = '<option></option>'; // Remove previous options
+    var versions = spelmodusOpties[productNameID];
+    for (var i = 0; i < versions.length; i++) {
+        optieSelect.appendChild(new Option(versions[i].Optie));
+    }
+    var selectie = document.getElementById('spelmodus').value;
+    document.getElementById('tijdWoorden').innerHTML = selectie
+}
+
+function changeOptie() {
+    var productNameID = document.getElementById('spelmodus').value;
+    var versions = spelmodusOpties[productNameID];
+    for (var i = 0; i < versions.length; i++) {
+    }
+}
+
+function selectedOptie() {
+    var naamStr = document.getElementById("naamText").value;
+    var spelmodusStr = document.getElementById("spelmodus").value;
+    var optiesStr = document.getElementById("opties").value;
+    var taalStr = document.getElementById("taal").value;
+    var moeilijkheidStr = document.getElementById("moeilijkheid").value;
+
+    if (/^[a-zA-Z]+$/.test(naamStr)) {
+        document.getElementById('naamLabel').innerHTML = 'Naam'
+    } else{
+        document.getElementById('naamLabel').innerHTML = 'Naam<span style="color:#ff0000"> Dit veld is verplicht en mag alleen letters bevatten</span>'
+    }
+
+    if (spelmodusStr == "") {
+        document.getElementById('spelmodusLabel').innerHTML = 'Spelmodus<span style="color:#ff0000"> Dit veld is verplicht</span>'
+        // return false;
+    } else {
+        document.getElementById('spelmodusLabel').innerHTML = 'Spelmodus'
+        if (optiesStr == "") {
+            document.getElementById('tijdWoorden').innerHTML = spelmodusStr + '<span style="color:#ff0000"> Dit veld is verplicht</span>'
+            // return false;
+        } else {
+            document.getElementById('tijdWoorden').innerHTML = spelmodusStr
+        }
+    }
+
+    if (taalStr == "") {
+        document.getElementById('taalLabel').innerHTML = 'Taal<span style="color:#ff0000"> Dit veld is verplicht</span>'
+        // return false;
+    } else {
+        document.getElementById('taalLabel').innerHTML = 'Taal'
+    }
+
+    if (moeilijkheidStr == "") {
+        document.getElementById('moeilijkheidLabel').innerHTML = 'Moeilijkheid<span style="color:#ff0000"> Dit veld is verplicht</span>'
+        // return false;
+    } else {
+        document.getElementById('moeilijkheidLabel').innerHTML = 'Moeilijkheid'
+    }
+
+    if (/^[a-zA-Z]+$/.test(naamStr) && spelmodusStr != "" && spelmodusStr == "Tijd" && optiesStr != "" && taalStr != "" && moeilijkheidStr != "") {
+        document.location.href ='../speelscherm-tijd'
+    }
+    else if (/^[a-zA-Z]+$/.test(naamStr) && spelmodusStr != "" && spelmodusStr == "Woorden" && optiesStr != ""&& taalStr != "" && moeilijkheidStr != "") {
+        document.location.href = '../speelscherm-woorden'
+    }
+}
+
+// Alles hieronder is voor custom instellingen. Alles hierboven is voor de database instellingen.
+function changeSpelmoduscustom() {
+    var spelmodusStr = document.getElementById("spelmodus").value;
+    if (spelmodusStr == 'Tijd') {
+        document.getElementById('optieDiv').style.display = "";
+      } else {
+        document.getElementById('optieDiv').style.display = "none";
+    }
+}
+
+function upload(evt) {
+    var data = null;
+    var file = evt.target.files[0];
+    var reader = new FileReader();
+    var arrayData = [];
+    reader.readAsText(file);
+    reader.onload = function(event){
+        var csvData = event.target.result;
+        var data = Papa.parse(csvData, {
+            header : false,
+            complete: function(results) {
+                arrayData.push(results.data);
+                document.getElementById('csv-test').innerHTML = arrayData[0]
+            }
+        });
+    };
+    reader.onerror = function() {
+        alert('Unable to read ');
+    };
+}
+
+function selectedOptieCustom() {
+    var naamStr = document.getElementById("naamText").value;
+    var spelmodusStr = document.getElementById("spelmodus").value;
+    var optiesStr = document.getElementById("opties").value;
+    var woordenStr = document.getElementById("woorden").value;
+    var uploadStr = document.getElementById("csv-test").innerText;
+    woordenStr = woordenStr.replace(/\s/g, " ").split(",").length
+    uploadStr = uploadStr.replace(/\s/g, " ").split(",").length
+
+    if (/^[a-zA-Z]+$/.test(naamStr)) {
+        document.getElementById('naamLabel').innerHTML = 'Naam'
+    } else{
+        document.getElementById('naamLabel').innerHTML = 'Naam<span style="color:#ff0000"> Dit veld is verplicht en mag alleen letters bevatten</span>'
+    }
+
+    if (spelmodusStr == "") {
+        document.getElementById('spelmodusLabel').innerHTML = 'Spelmodus<span style="color:#ff0000"> Dit veld is verplicht</span>'
+    } else {
+        document.getElementById('spelmodusLabel').innerHTML = 'Spelmodus'
+        if (spelmodusStr == 'Tijd' && optiesStr == "") {
+            document.getElementById('tijdWoorden').innerHTML = spelmodusStr + '<span style="color:#ff0000"> Dit veld is verplicht</span>'
+        } else {
+            document.getElementById('tijdWoorden').innerHTML = 'Tijd'
+        }
+    }
+
+    if (woordenStr < 50 && uploadStr < 50) {
+        document.getElementById('woordenLabel').innerHTML = 'Woorden<span style="color:#ff0000"> Voldoet niet aan format en/of minimumaantal van 50 woorden.</span>'
+        document.getElementById('uploadLabel').innerHTML = 'Upload file met woorden<span style="color:#ff0000"> Voldoet niet aan format en/of minimumaantal van 50 woorden.</span>'
+    } else if (woordenStr > 50 && uploadStr > 50) {
+        document.getElementById('woordenLabel').innerHTML = 'Woorden<span style="color:#ff0000"> Voldoet niet aan format en/of minimumaantal van 50 woorden.</span>'
+        document.getElementById('uploadLabel').innerHTML = 'Upload file met woorden<span style="color:#ff0000"> Voldoet niet aan format en/of minimumaantal van 50 woorden.</span>'
+    } else {
+        document.getElementById('woordenLabel').innerHTML = 'Woorden'
+        document.getElementById('uploadLabel').innerHTML = 'Upload file met woorden'
+    }
+
+    if (/^[a-zA-Z]+$/.test(naamStr) && spelmodusStr == "Tijd" && optiesStr != "" && (woordenStr > 50 || uploadStr > 50)) {
+        document.location.href ='../speelscherm-tijd'
+    }
+    else if (/^[a-zA-Z]+$/.test(naamStr) && spelmodusStr == "Woorden" && (woordenStr > 50 || uploadStr > 50)) {
+        document.location.href = '../speelscherm-woorden'
+    }
+}
+
+//To-do:
+// Fix count of paparse (momenteel worden enters nog gezien als comma's waardoor de woordcount te hoog uitvalt als er /n in de file zit)
+// woordenStr kan nog vreemde tekens en hoofdletters bevatten.
+// Op "backpage" (pijltje linksboven) klikken zorgt ervoor dat de dropdown menu's qua changeSpelmodus verwarrend werkt.
+
